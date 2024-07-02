@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "dormarrs-rails",
+	"version": "${version}",
+	"name": "Dormarrs Rails",
+	"description": "A custom update to Minecraft transportation.",
+	"authors": [
+		"Dormarr"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "MIT",
+	"icon": "assets/dormarrs-rails/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"dormarr.rails.DormarrsRails"
+		],
+		"client": [
+			"dormarr.rails.DormarrsRailsClient"
+		],
+		"fabric-datagen": [
+			"dormarr.rails.DormarrsRailsDataGenerator"
+		]
+	},
+	"mixins": [
+		"dormarrs-rails.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.21",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "block/rail_flat",
+  "textures": {
+    "rail": "dormarrs-rails:block/copper_rail_on"
+  }
+}

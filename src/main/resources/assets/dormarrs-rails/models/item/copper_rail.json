@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "dormarrs-rails:block/copper_rail"
+  }
+}
