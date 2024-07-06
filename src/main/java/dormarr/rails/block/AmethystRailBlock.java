@@ -21,6 +21,8 @@ public class AmethystRailBlock extends AbstractRailBlock {
     public static final MapCodec<AmethystRailBlock> CODEC = createCodec(AmethystRailBlock::new);
     public static final BooleanProperty POWERED = Properties.POWERED;
 
+    public static final int POWER_DISTANCE = 12;
+
     public AmethystRailBlock(Settings settings) {
 
         super(true, settings);
@@ -44,7 +46,7 @@ public class AmethystRailBlock extends AbstractRailBlock {
     }
 
     protected boolean isPoweredByOtherRails(World world, BlockPos pos, BlockState state, boolean bl, int distance) {
-        if (distance >= 8) {
+        if (distance >= POWER_DISTANCE) {
             return false;
         } else {
             int i = pos.getX();
@@ -272,5 +274,4 @@ public class AmethystRailBlock extends AbstractRailBlock {
 
         return super.mirror(state, mirror);
     }
-
 }

@@ -18,18 +18,15 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class CopperRailBlock extends AbstractRailBlock {
-
     public static final EnumProperty<RailShape> SHAPE = Properties.STRAIGHT_RAIL_SHAPE;
     public static final MapCodec<CopperRailBlock> CODEC = createCodec(CopperRailBlock::new);
     public static final BooleanProperty POWERED = Properties.POWERED;
 
+    public static final int POWER_DISTANCE = 16;
+
     public CopperRailBlock(Settings settings) {
         super(true, settings);
         this.setDefaultState(this.stateManager.getDefaultState().with(SHAPE, RailShape.NORTH_SOUTH).with(POWERED, Boolean.valueOf(false)).with(WATERLOGGED, Boolean.valueOf(false)));
-    }
-
-    public static boolean isRail(BlockState state) {
-        return state.isIn(ModTags.Blocks.CUSTOM_RAILS) && state.getBlock() instanceof AbstractRailBlock;
     }
 
     @Override
@@ -48,9 +45,8 @@ public class CopperRailBlock extends AbstractRailBlock {
         builder.add(SHAPE, POWERED, WATERLOGGED);
     }
 
-
     protected boolean isPoweredByOtherRails(World world, BlockPos pos, BlockState state, boolean bl, int distance) {
-        if (distance >= 8) {
+        if (distance >= POWER_DISTANCE) {
             return false;
         } else {
             int i = pos.getX();

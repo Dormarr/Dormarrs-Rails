@@ -3,8 +3,10 @@
   "package": "dormarr.rails.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "AbstractMinecartEntityMixin",
     "AbstractRailBlockMixin",
-    "ExampleMixin"
+    "MinecartEntityAccessor",
+    "MinecartItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1

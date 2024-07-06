@@ -1,6 +1,7 @@
 package dormarr.rails.utils;
 
 import dormarr.rails.DormarrsRails;
+import net.fabricmc.fabric.mixin.datagen.TagProviderMixin;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKeys;

@@ -13,7 +13,7 @@ public class DormarrsRails implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		LOGGER.info("Hello Fabric world!");
+		LOGGER.info("Initialising Dormarrs Rails.");
 
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();

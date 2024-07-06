@@ -34,29 +34,26 @@ public class MinecartItemMixin {
         World world = context.getWorld();
         BlockPos blockPos = context.getBlockPos();
         BlockState blockState = world.getBlockState(blockPos);
-        if (!blockState.isIn(ModTags.Blocks.CUSTOM_RAILS)) {
-            cir.getReturnValue();
-        } else {
-            ItemStack itemStack = context.getStack();
-            if (world instanceof ServerWorld serverWorld) {
-                RailShape railShape = blockState.getBlock() instanceof AbstractRailBlock
-                        ? blockState.get(((AbstractRailBlock)blockState.getBlock()).getShapeProperty())
-                        : RailShape.NORTH_SOUTH;
-                double d = 0.0;
-                if (railShape.isAscending()) {
-                    d = 0.5;
-                }
 
-                AbstractMinecartEntity abstractMinecartEntity = AbstractMinecartEntity.create(
-                        serverWorld, (double)blockPos.getX() + 0.5, (double)blockPos.getY() + 0.0625 + d, (double)blockPos.getZ() + 0.5, this.type, itemStack, context.getPlayer()
-                );
-                serverWorld.spawnEntity(abstractMinecartEntity);
-                serverWorld.emitGameEvent(GameEvent.ENTITY_PLACE, blockPos, GameEvent.Emitter.of(context.getPlayer(), serverWorld.getBlockState(blockPos.down())));
+        ItemStack itemStack = context.getStack();
+        if (world instanceof ServerWorld serverWorld && blockState.getBlock() instanceof AbstractRailBlock){//(blockState.isIn(BlockTags.RAILS) || blockState.isIn(ModTags.Blocks.RAILS) || blockState.isIn(ModTags.Blocks.CUSTOM_RAILS))) {
+            RailShape railShape = blockState.getBlock() instanceof AbstractRailBlock
+                    ? blockState.get(((AbstractRailBlock)blockState.getBlock()).getShapeProperty())
+                    : RailShape.NORTH_SOUTH;
+            double d = 0.0;
+            if (railShape.isAscending()) {
+                d = 0.5;
             }
+            AbstractMinecartEntity abstractMinecartEntity = AbstractMinecartEntity.create(
+                    serverWorld, (double)blockPos.getX() + 0.5, (double)blockPos.getY() + 0.0625 + d, (double)blockPos.getZ() + 0.5, this.type, itemStack, context.getPlayer()
+            );
+            serverWorld.spawnEntity(abstractMinecartEntity);
+            serverWorld.emitGameEvent(GameEvent.ENTITY_PLACE, blockPos, GameEvent.Emitter.of(context.getPlayer(), serverWorld.getBlockState(blockPos.down())));
 
             itemStack.decrement(1);
-            cir.getReturnValue();
+            cir.setReturnValue(ActionResult.success(true));
+        }else{
+            cir.setReturnValue(ActionResult.FAIL);
         }
-
     }
 }
